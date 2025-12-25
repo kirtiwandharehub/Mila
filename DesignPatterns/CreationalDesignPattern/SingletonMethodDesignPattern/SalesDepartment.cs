@@ -4,15 +4,23 @@ public class SalesDepartment
     public int TotalSold {get; set;}
     public int RetailPricePerItem {get; set;}
     public int WholeSalePricePerItem {get; set;}
+    public int TotalProfit() => (RetailPricePerItem - WholeSalePricePerItem) * TotalSold;
+    private string filePath = @"SalesBook.txt";
+    private FileManagementSystem fileMS;
     
     public void ReportSales()
-    {
-        int totalProfit = (RetailPricePerItem - WholeSalePricePerItem) * TotalSold;
+    {   
         logger = Logger.GetInstance;
         logger.Log(
-            $"TotalProfit - {totalProfit}.", 
+            $"TotalProfit - {TotalProfit()}.", 
             $" SoldToday - {TotalSold}.", 
             $" RetailPricePerItem - {RetailPricePerItem}.", 
             $" WholeSalePricePerItem - {WholeSalePricePerItem}.");
+    }
+
+    public async Task UpdateInventory()
+    {
+        fileMS = FileManagementSystem.GetInstance();
+        await fileMS.Append(filePath, $"{DateTime.Now} - TotalProfit - {TotalProfit()}.{Environment.NewLine}");
     }
 }

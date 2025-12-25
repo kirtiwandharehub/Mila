@@ -2,9 +2,9 @@
 
 SalesRepresentative[] salesRepresentatives = new SalesRepresentative[3]
 {
-    new SalesRepresentative() {Name = "Sara"},
-    new SalesRepresentative() {Name = "John"},
-    new SalesRepresentative() {Name = "Marco"}
+    new SalesRepresentative("Sara"),
+    new SalesRepresentative("John"),
+    new SalesRepresentative("Marco")
 };
 using CancellationTokenSource cts = new CancellationTokenSource();
 Task[] tasks = new Task[3]
@@ -24,3 +24,9 @@ Console.WriteLine($"{salesRepresentatives[2].Name} sold {salesRepresentatives[2]
 SalesDepartment sales = new SalesDepartment() {RetailPricePerItem = 10, WholeSalePricePerItem = 8};
 sales.TotalSold = salesRepresentatives.Sum(sr => sr.TotalSold);
 sales.ReportSales();
+
+await salesRepresentatives[0].UpdateTransactions();
+await salesRepresentatives[1].UpdateTransactions();
+await salesRepresentatives[2].UpdateTransactions();
+
+await sales.UpdateInventory();
