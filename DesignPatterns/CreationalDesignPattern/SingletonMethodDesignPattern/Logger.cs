@@ -15,6 +15,7 @@ public sealed class Logger
             {
                 if (instance is null)
                 {
+                    Console.WriteLine("Logger is initialized.");
                     instance = new();
                 }
                 return instance;
