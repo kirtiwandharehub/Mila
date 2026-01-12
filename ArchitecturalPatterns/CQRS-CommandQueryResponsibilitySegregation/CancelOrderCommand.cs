@@ -1,0 +1,1 @@
+public record CancelOrderCommand (Guid OrderId);

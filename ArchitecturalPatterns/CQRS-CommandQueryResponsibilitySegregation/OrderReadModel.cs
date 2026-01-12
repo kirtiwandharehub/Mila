@@ -1,0 +1,1 @@
+public record OrderReadModel (Guid OrderId, string CustomerName, string Status);

@@ -1,0 +1,1 @@
+public record OrderCreatedEvent (Guid OrderId, string CustomerName);

@@ -1,0 +1,1 @@
+public record OrderCancelledEvent (Guid OrderId);

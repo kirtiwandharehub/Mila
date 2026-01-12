@@ -1,0 +1,1 @@
+public record CreateOrderCommand (Guid OrderId, string CustomerName);
